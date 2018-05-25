@@ -3,61 +3,61 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Provincia;
 use App\Entity\Region;
+use App\Entity\Provincia;
+use App\Entity\ProvinciaType;
 use App\Form\RegionType;
-use App\Form\ProvinciaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
     /**
-     * @Route("/provincia")
+     * @Route("/region")
      */
 
-class ProvinciaController extends Controller
+class RegionController extends Controller
 {
     /**
-     * @Route("/nuevo", name="provincia_nuevo")
+     * @Route("/nuevo", name="region_nuevo")
      */
     public function index(Request $request)
     {
-        $provincia = new Provincia();
-        $formu = $this->createForm(ProvinciaType::class, $provincia);
+        $region = new Region();
+        $formu = $this->createForm(RegionType::class, $region);
         $formu->handleRequest($request);
 
         if ($formu->isSubmitted()) {
 
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($provincia);
+            $em->persist($region);
 
             $em->flush();
 
-            return $this->redirectToRoute('provincia_lista');
+            return $this->redirectToRoute('region_lista');
         }
 
-        return $this->render('provincia/nuevo.html.twig', [
+        return $this->render('region/nuevo.html.twig', [
             'formulario' => $formu->createView(),
         ]);
         
     }
 
     /**
-     * @Route("/lista", name="provincia_lista")
+     * @Route("/lista", name="region_lista")
      */
     public function listado()
     {
 
         //$this->cargarDatos();
         $repo = $this->getDoctrine()->
-            getRepository (Provincia::class);
+            getRepository (Region::class);
 
-        $provincias = $repo->findAll();    
+        $regiones = $repo->findAll();    
 
      
 
-        return $this->render('provincia/index.html.twig', [
-            'provincias' => $provincias,
+        return $this->render('region/index.html.twig', [
+            'regiones' => $regiones,
              
             
         ]);

@@ -4,6 +4,7 @@ namespace App\Form;
 
 
 use App\Entity\Localidad;
+use App\Entity\Provincia;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;

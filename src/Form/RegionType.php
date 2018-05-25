@@ -3,13 +3,13 @@
 namespace App\Form;
 
 
-use App\Entity\Provincia;
+use App\Entity\Region;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProvinciaType extends AbstractType
+class RegionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,6 +22,7 @@ class ProvinciaType extends AbstractType
             )
         ))
 
+            ->add('idioma')
             ->add('consultar', SubmitType::class, array(
                 'attr' => array('class' => 'btn btn-success'),
 
@@ -31,7 +32,7 @@ class ProvinciaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Provincia::class,
+            'data_class' => Region::class,
         ]);
     }
 }

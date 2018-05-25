@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Localidad;
+use App\Entity\Provincia;
 use App\Form\LocalidadType;
+use app\Form\ProvinciaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
