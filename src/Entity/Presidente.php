@@ -22,9 +22,15 @@ class Presidente
     private $nombre;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $fechanac;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Pais", inversedBy="presidente", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pais;
 
     public function getId()
     {
@@ -51,6 +57,18 @@ class Presidente
     public function setFechanac(\DateTimeInterface $fechanac): self
     {
         $this->fechanac = $fechanac;
+
+        return $this;
+    }
+
+    public function getPais(): ?Pais
+    {
+        return $this->pais;
+    }
+
+    public function setPais(Pais $pais): self
+    {
+        $this->pais = $pais;
 
         return $this;
     }

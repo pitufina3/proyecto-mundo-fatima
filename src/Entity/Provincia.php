@@ -39,6 +39,7 @@ class Provincia
         $this->localidades = new ArrayCollection();
     }
 
+
     public function getId()
     {
         return $this->id;
@@ -97,5 +98,22 @@ class Provincia
         $this->region = $region;
 
         return $this;
+    }
+
+
+     public function getArea(): ?float
+    {
+        foreach ($this->localidades as $localidad){
+            $suma = $suma + $localidad->getArea();
+        }
+            return $suma;
+    }
+    
+     public function getHabitantes(): ?int
+    {
+        foreach ($this->localidades as $localidad){
+            $suma = $suma + $localidad->getHabitantes();
+            }
+            return $suma;
     }
 }

@@ -33,6 +33,12 @@ class Region
      */
     private $provincias;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pais", inversedBy="regiones")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pais;
+
     public function __construct()
     {
         $this->provincias = new ArrayCollection();
@@ -96,5 +102,34 @@ class Region
         }
 
         return $this;
+    }
+
+    public function getPais(): ?Pais
+    {
+        return $this->pais;
+    }
+
+    public function setPais(?Pais $pais): self
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+
+     public function getArea(): ?float
+    {
+        foreach ($this->provincias as $provincia){
+            $suma = $suma + $provincia->getArea();
+        }
+            return $suma;
+    }
+    
+     public function getHabitantes(): ?int
+    {
+        foreach ($this->provincias as $provincia){
+            $suma = $suma + $provincia->getHabitantes();
+            }
+            return $suma;
     }
 }
